@@ -1,0 +1,84 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'org.jreleaser' version '1.21.0'
+}
+
+group = 'com.stevenpg'
+version = '0.0.1'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    withJavadocJar()
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Provided — consumers already have these
+    compileOnly 'org.springframework.boot:spring-boot-autoconfigure:4.0.5'
+    compileOnly 'org.springframework.boot:spring-boot-jackson:4.0.5'
+    compileOnly 'org.springframework.data:spring-data-commons:4.0.4'
+    compileOnly 'com.fasterxml.jackson.core:jackson-annotations:2.21'
+    compileOnly 'tools.jackson.core:jackson-databind:3.1.0'
+
+    // Test
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:4.0.5'
+    testImplementation 'org.springframework.boot:spring-boot-jackson:4.0.5'
+    testImplementation 'org.springframework.data:spring-data-commons:4.0.4'
+    testImplementation 'tools.jackson.core:jackson-databind:3.1.0'
+    testImplementation 'com.fasterxml.jackson.core:jackson-annotations:2.21'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            pom {
+                name = 'Spring Boot Starter Page Jackson 3'
+                description = 'Auto-configuration for Jackson 3 deserialization of Spring Data Page objects'
+                url = 'https://github.com/StevenPG/spring-boot-starter-page-jackson3'
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'StevenPG'
+                        name = 'StevenPG'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:https://github.com/StevenPG/spring-boot-starter-page-jackson3.git'
+                    developerConnection = 'scm:git:ssh://github.com/StevenPG/spring-boot-starter-page-jackson3.git'
+                    url = 'https://github.com/StevenPG/spring-boot-starter-page-jackson3'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'staging'
+            url = layout.buildDirectory.dir('staging-deploy')
+        }
+    }
+}
+
+jreleaser {
+    configFile = layout.projectDirectory.file('config.yaml')
+}

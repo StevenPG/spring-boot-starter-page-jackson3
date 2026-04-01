@@ -1,0 +1,34 @@
+project:
+  description: Auto-configuration for Jackson 3 deserialization of Spring Data Page objects
+  longDescription: Auto-configuration for Jackson 3 deserialization of Spring Data Page objects
+  authors:
+    - StevenPG
+  license: Apache-2.0
+  links:
+    homepage: https://github.com/StevenPG/spring-boot-starter-page-jackson3
+  languages:
+    java:
+      groupId: com.stevenpg
+      version: "17"
+  inceptionYear: "2026"
+
+signing:
+  active: RELEASE
+  armored: true
+
+deploy:
+  maven:
+    mavenCentral:
+      sonatype:
+        active: RELEASE
+        url: https://central.sonatype.com/api/v1/publisher
+        stagingRepositories:
+          - build/staging-deploy
+        sign: true
+        sourceJar: true
+        checksums: true
+        javadocJar: true
+
+release:
+  github:
+    owner: StevenPG
