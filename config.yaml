@@ -32,3 +32,10 @@ deploy:
 release:
   github:
     owner: StevenPG
+    name: spring-boot-starter-page-jackson3
+
+files:
+  artifacts:
+    - path: build/libs/spring-boot-starter-page-jackson3-{{projectVersion}}.jar
+    - path: build/libs/spring-boot-starter-page-jackson3-{{projectVersion}}-javadoc.jar
+    - path: build/libs/spring-boot-starter-page-jackson3-{{projectVersion}}-sources.jar
