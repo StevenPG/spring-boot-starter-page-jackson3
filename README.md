@@ -75,6 +75,12 @@ Standard Spring Data REST pagination envelope:
 
 Null and missing page metadata fields are handled gracefully (defaults to page 0, size 1, 0 total).
 
+## Example Project
+
+A reference project is available that demonstrates the library's behavior with two identical Spring Boot 4 applications — one with this dependency and one without — making it straightforward to compare the deserialization behavior side by side:
+
+[**StevenPG/DemosAndArticleContent — spring-boot-starter-page-jackson3**](https://github.com/StevenPG/DemosAndArticleContent/tree/main/blog/spring-boot-starter-page-jackson3)
+
 ## Requirements
 
 | Dependency          | Version |
